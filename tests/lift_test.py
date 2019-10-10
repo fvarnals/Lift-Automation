@@ -32,3 +32,11 @@ def test_load():
 def test_update_number_of_occupants():
     lift.update_number_of_occupants()
     assert lift.number_of_occupants == 1
+
+def test_go_up():
+    lift.go_up()
+    assert lift.current_floor == 1
+
+def test_go_down():
+    lift.go_down()
+    assert lift.current_floor == 0

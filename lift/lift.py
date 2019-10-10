@@ -5,6 +5,7 @@ class Lift(object):
         self.floors = list(range(0,len(queues)))
         self.occupants = {}
         self.number_of_occupants = 0
+        self.current_floor = 0
 
         # initialize list of occupants by desired destination floor
         for floor in self.floors:
@@ -21,3 +22,9 @@ class Lift(object):
     def update_number_of_occupants(self):
         # update the number of people currently in the lift
         self.number_of_occupants = sum(self.occupants.values())
+
+    def go_up(self):
+        self.current_floor += 1
+
+    def go_down(self):
+        self.current_floor -= 1
