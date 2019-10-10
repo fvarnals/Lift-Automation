@@ -22,6 +22,9 @@ def test_capacity():
 def test_floors():
     assert lift.floors == [0,1,2,3,4,5,6]
 
+def test_occupants():
+    assert lift.occupants == {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+
 def test_load():
     lift.load(5)
-    assert lift.occupants == [5]
+    assert lift.occupants[5] == 1
