@@ -6,10 +6,17 @@ class Lift(object):
         self.occupants = {}
         self.number_of_occupants = 0
         self.current_floor = 0
+        self.queues = {}
 
         # initialize list of occupants by desired destination floor
         for floor in self.floors:
             self.occupants[floor] = 0
+
+        # initialize list of people queuing on each floor
+        floor_number = 0
+        for queue in queues:
+            self.queues[floor_number] = queue
+            floor_number += 1
 
     def load(self, passenger):
         # passenger enters lift
