@@ -28,3 +28,7 @@ def test_occupants():
 def test_load():
     lift.load(5)
     assert lift.occupants[5] == 1
+
+def test_update_number_of_occupants():
+    lift.update_number_of_occupants()
+    assert lift.number_of_occupants == 1
