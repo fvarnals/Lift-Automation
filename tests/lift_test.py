@@ -13,3 +13,8 @@ def test_initialization():
         lift = Lift(queues,capacity)
     except:
         pytest.fail("Failed to initialize Lift object")
+
+lift = Lift(queues,capacity)
+
+def test_capacity():
+    assert lift.capacity == 5
