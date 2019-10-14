@@ -57,3 +57,14 @@ def test_set_destination():
 def test_travel_to_lowest_called_floor():
     lift.travel_to_lowest_called_floor()
     assert lift.current_floor == 2
+
+def test_set_direction_of_travel():
+    lift.destination_floor = 3
+    lift.current_floor = 0
+    lift.set_direction_of_travel()
+    assert lift.direction_of_travel == 'up'
+
+    lift.destination_floor = 2
+    lift.current_floor = 3
+    lift.set_direction_of_travel()
+    assert lift.direction_of_travel == 'down'

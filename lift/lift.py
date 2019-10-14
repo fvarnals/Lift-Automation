@@ -56,3 +56,11 @@ class Lift(object):
                 pass
             else:
                 self.current_floor = floor
+
+    def set_direction_of_travel(self):
+        if self.current_floor < self.destination_floor:
+            self.direction_of_travel = 'up'
+        elif self.current_floor > self.destination_floor:
+            self.direction_of_travel = 'down'
+        else:
+            pass
