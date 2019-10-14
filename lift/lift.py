@@ -52,7 +52,16 @@ class Lift(object):
     def travel_to_lowest_called_floor(self):
         for floor in self.queues:
             queue = self.queues[floor]
-            if len(queue) == 0:
+            if queue == ():
+                pass
+            else:
+                self.current_floor = floor
+                break
+
+    def travel_to_highest_called_floor(self):
+        for floor in self.queues:
+            queue = self.queues[floor]
+            if queue == ():
                 pass
             else:
                 self.current_floor = floor

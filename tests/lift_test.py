@@ -5,7 +5,7 @@ sys.path.insert(0, myPath + '/../lift')
 
 from lift import Lift
 
-queues = ( (),   (),    (5,5,5), (),   (),    (),    () )
+queues = ( (),   (),    (5,5,5), (),   (3),    (),    () )
 capacity = 5
 
 def test_initialization():
@@ -57,6 +57,10 @@ def test_set_destination():
 def test_travel_to_lowest_called_floor():
     lift.travel_to_lowest_called_floor()
     assert lift.current_floor == 2
+
+def test_travel_to_highest_called_floor():
+    lift.travel_to_highest_called_floor()
+    assert lift.current_floor == 4
 
 def test_set_direction_of_travel():
     lift.destination_floor = 3
