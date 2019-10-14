@@ -52,4 +52,8 @@ def test_passengers_pickup():
 
 def test_set_destination():
     lift.set_destination(3)
-    assert lift.destination_level == 3
+    assert lift.destination_floor == 3
+
+def test_travel_to_lowest_called_floor():
+    lift.travel_to_lowest_called_floor()
+    assert lift.current_floor == 2
