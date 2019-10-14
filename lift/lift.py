@@ -7,6 +7,8 @@ class Lift(object):
         self.number_of_occupants = 0
         self.current_floor = 0
         self.queues = {}
+        self.direction_of_travel = 'up'
+        self.destination_level = None
 
         # initialize list of occupants by desired destination floor
         for floor in self.floors:
@@ -18,9 +20,9 @@ class Lift(object):
             self.queues[floor_number] = queue
             floor_number += 1
 
-    def load(self, passenger):
+    def load_passenger(self, destination_level):
         # passenger enters lift
-        self.occupants[passenger] += 1
+        self.occupants[destination_level] += 1
 
     def unload(self, level):
         # all occupants destined for given floor, exit lift
@@ -35,3 +37,11 @@ class Lift(object):
 
     def go_down(self):
         self.current_floor -= 1
+
+    def passengers_pickup(self, level_queue):
+        for passenger in level_queue:
+            if self.number_of_occupants == self.capacity:
+                break
+            else:
+                self.load_passenger(passenger)
+                self.update_number_of_occupants()
