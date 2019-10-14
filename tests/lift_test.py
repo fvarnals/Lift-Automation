@@ -49,3 +49,7 @@ def test_passengers_pickup():
     lift.passengers_pickup((5,5,5))
     assert lift.number_of_occupants == 2
     assert lift.occupants[5] == 2
+
+def test_set_destination():
+    lift.set_destination(3)
+    assert lift.destination_level == 3

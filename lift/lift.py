@@ -45,3 +45,6 @@ class Lift(object):
             else:
                 self.load_passenger(passenger)
                 self.update_number_of_occupants()
+
+    def set_destination(self, level):
+        self.destination_level = level
