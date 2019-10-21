@@ -9,6 +9,7 @@ class Lift(object):
         self.queues = {}
         self.direction_of_travel = 'up'
         self.destination_floor = None
+        self.empty = 'true'
 
         # initialize list of occupants by desired destination floor
         for floor in self.floors:
@@ -23,6 +24,7 @@ class Lift(object):
     def load_passenger(self, destination_floor):
         # passenger enters lift
         self.occupants[destination_floor] += 1
+        self.queues[self.current_floor]
 
     def unload(self, floor):
         # all occupants destined for given floor, exit lift
@@ -73,3 +75,6 @@ class Lift(object):
             self.direction_of_travel = 'down'
         else:
             pass
+
+    def travel(self):
+        self.current_floor = self.destination_floor

@@ -72,3 +72,9 @@ def test_set_direction_of_travel():
     lift.current_floor = 3
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
+
+def test_travel():
+    lift.current_floor = 2
+    lift.destination_floor = 5
+    lift.travel()
+    assert lift.current_floor == 5
