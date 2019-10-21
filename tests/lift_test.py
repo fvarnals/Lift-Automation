@@ -73,8 +73,9 @@ def test_set_direction_of_travel():
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
 
-def test_travel():
-    lift.current_floor = 2
-    lift.destination_floor = 5
-    lift.travel()
-    assert lift.current_floor == 5
+def test_destination_set_to_highest_called_floor_when_empty_and_going_up():
+    lift.number_of_occupants = 0
+    lift.current_floor = 1
+    lift.direction_of_travel = 'up'
+    lift.smart_travel()
+    assert lift.current_floor == 4

@@ -76,5 +76,6 @@ class Lift(object):
         else:
             pass
 
-    def travel(self):
-        self.current_floor = self.destination_floor
+    def smart_travel(self):
+        if self.number_of_occupants == 0:
+            self.travel_to_highest_called_floor()
