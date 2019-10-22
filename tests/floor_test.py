@@ -15,3 +15,6 @@ floor = Floor(4, (5,5,5))
 
 def test_floor_queue():
     assert floor.queue == (5,5,5)
+
+def test_floor_number():
+    assert floor.number == 4
