@@ -26,7 +26,7 @@ def test_occupants():
     assert lift.occupants == {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
 
 def test_queues():
-    assert lift.queues[2] == (5,5,5)
+    assert lift.queues == {0:(), 1:(), 2: (5,5,5), 3:(), 4:(3), 5:(), 6:()}
 
 def test_load_passenger():
     lift.load_passenger(5)
@@ -72,9 +72,3 @@ def test_set_direction_of_travel():
     lift.current_floor = 3
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
-
-def test_travel():
-    lift.current_floor = 2
-    lift.destination_floor = 5
-    lift.travel()
-    assert lift.current_floor == 5
