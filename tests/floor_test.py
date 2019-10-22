@@ -10,3 +10,8 @@ def test_initialization():
         floor = Floor()
     except:
         pytest.fail("Failed to initialize Lift object")
+
+floor = Floor(4, (5,5,5))
+
+def test_floor_queue():
+    assert floor.queue == (5,5,5)
