@@ -1,7 +1,7 @@
 import py, pytest
 import sys, os
 myPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, myPath + '/../lift')
+sys.path.insert(0, myPath + '/../src')
 
 from lift import Lift
 
@@ -74,6 +74,13 @@ def test_set_direction_of_travel():
     assert lift.direction_of_travel == 'down'
 
 def test_destination_set_to_highest_called_floor_when_empty_and_going_up():
+    lift.number_of_occupants = 0
+    lift.current_floor = 1
+    lift.direction_of_travel = 'up'
+    lift.smart_travel()
+    assert lift.current_floor == 4
+
+def test_destination_set_to_lowest_called_floor_when_empty_and_going_up():
     lift.number_of_occupants = 0
     lift.current_floor = 1
     lift.direction_of_travel = 'up'
