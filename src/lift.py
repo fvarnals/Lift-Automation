@@ -25,6 +25,7 @@ class Lift(object):
         # passenger enters lift
         self.occupants[destination_floor] += 1
         self.queues[self.current_floor]
+        self.update_number_of_occupants()
 
     def unload(self, floor):
         # all occupants destined for given floor, exit lift
@@ -42,21 +43,21 @@ class Lift(object):
 
     def passengers_pickup(self, floor_queue):
         temp_list = ()
-        if self.direction_of_travel == 'up':
-            for passenger in floor_queue:
-                if (self.number_of_occupants < self.capacity) and (passenger > self.current_floor):
-                    self.load_passenger(passenger)
-                    self.update_number_of_occupants()
-                else:
-                    temp_list += (passenger,)
-        else:
-            for passenger in floor_queue:
-                if (self.number_of_occupants < self.capacity) and (passenger < self.current_floor):
-                    self.load_passenger(passenger)
-                    self.update_number_of_occupants()
-                else:
-                    temp_list += (passenger,)
+        for passenger in floor_queue:
+            if (self.has_spaces_available()) and (self.direction_suitable_for(passenger)):
+                self.load_passenger(passenger)
+            else:
+                temp_list += (passenger,)
         self.queues[self.current_floor] = temp_list
+
+    def direction_suitable_for(self, passenger):
+        if self.direction_of_travel == 'up':
+            return passenger > self.current_floor
+        else:
+            return passenger < self.current_floor
+
+    def has_spaces_available(self):
+        return self.number_of_occupants < self.capacity
 
     def set_destination(self, floor):
         self.destination_floor = floor
