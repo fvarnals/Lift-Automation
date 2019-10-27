@@ -49,6 +49,13 @@ class Lift(object):
                     self.update_number_of_occupants()
                 else:
                     temp_list += (passenger,)
+        else:
+            for passenger in floor_queue:
+                if (self.number_of_occupants < self.capacity) and (passenger < self.current_floor):
+                    self.load_passenger(passenger)
+                    self.update_number_of_occupants()
+                else:
+                    temp_list += (passenger,)
         self.queues[self.current_floor] = temp_list
 
     def set_destination(self, floor):
