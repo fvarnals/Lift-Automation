@@ -5,7 +5,7 @@ sys.path.insert(0, myPath + '/../src')
 
 from lift import Lift
 
-queues = ( (),   (),    (5,5,5), (),   (3),    (),    () )
+queues = ( (),   (),    (5,5,5), (),   (3,),    (),    () )
 capacity = 5
 
 def test_initialization():
@@ -26,7 +26,7 @@ def test_occupants():
     assert lift.occupants == {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
 
 def test_queues():
-    assert lift.queues[2] == (5,5,5)
+    assert lift.queues == {0:(), 1:(), 2: (5,5,5), 3:(), 4:(3,), 5:(), 6:()}
 
 def test_load_passenger():
     lift.load_passenger(5)
@@ -44,11 +44,22 @@ def test_go_down():
     lift.go_down()
     assert lift.current_floor == 0
 
-def test_passengers_pickup():
+def test_passengers_pickup_going_up():
     lift = Lift(queues, 2)
+    lift.current_floor = 2
     lift.passengers_pickup((5,5,5))
     assert lift.number_of_occupants == 2
     assert lift.occupants[5] == 2
+    assert lift.queues == {0:(), 1:(), 2: (5,), 3:(), 4:(3,), 5:(), 6:()}
+
+def test_passengers_pickup_going_down():
+    lift = Lift(queues, 2)
+    lift.direction_of_travel = 'down'
+    lift.current_floor = 4
+    floor_queue = lift.queues[4]
+    lift.passengers_pickup(floor_queue)
+    assert lift.occupants[3] == 1
+    assert lift.queues == {0:(), 1:(), 2: (5,5,5), 3:(), 4:(), 5:(), 6:()}
 
 def test_set_destination():
     lift.set_destination(3)
@@ -72,6 +83,7 @@ def test_set_direction_of_travel():
     lift.current_floor = 3
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
+
 
 def test_destination_set_to_highest_called_floor_when_empty_and_going_up():
     lift.number_of_occupants = 0
