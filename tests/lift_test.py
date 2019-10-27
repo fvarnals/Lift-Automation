@@ -44,11 +44,13 @@ def test_go_down():
     lift.go_down()
     assert lift.current_floor == 0
 
-def test_passengers_pickup():
+def test_passengers_pickup_going_up():
     lift = Lift(queues, 2)
+    lift.current_floor = 2
     lift.passengers_pickup((5,5,5))
     assert lift.number_of_occupants == 2
     assert lift.occupants[5] == 2
+    assert lift.queues == {0:(), 1:(), 2: (5,), 3:(), 4:(3), 5:(), 6:()}
 
 def test_set_destination():
     lift.set_destination(3)
@@ -72,3 +74,13 @@ def test_set_direction_of_travel():
     lift.current_floor = 3
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
+
+# def test_load_passengers():
+#     lift.current_floor = 2
+#     lift.occupants = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:7}
+#     lift.direction_of_travel = 'up'
+#     lift.number_of_current_occupants = 7
+#     lift.capacity = 10
+#     lift.queues = {0:(), 1:(), 2: (5,0,1,6,3,5,6), 3:(), 4:(), 5:(), 6:()}
+#     lift.load_passengers()
+#     assert lift.occupants == {3:1, 5:1, 6:8}

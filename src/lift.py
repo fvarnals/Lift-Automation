@@ -41,12 +41,15 @@ class Lift(object):
         self.current_floor -= 1
 
     def passengers_pickup(self, floor_queue):
-        for passenger in floor_queue:
-            if self.number_of_occupants == self.capacity:
-                break
-            else:
-                self.load_passenger(passenger)
-                self.update_number_of_occupants()
+        temp_list = ()
+        if self.direction_of_travel == 'up':
+            for passenger in floor_queue:
+                if (self.number_of_occupants < self.capacity) and (passenger > self.current_floor):
+                    self.load_passenger(passenger)
+                    self.update_number_of_occupants()
+                else:
+                    temp_list += (passenger,)
+        self.queues[self.current_floor] = temp_list
 
     def set_destination(self, floor):
         self.destination_floor = floor
@@ -63,6 +66,7 @@ class Lift(object):
     def travel_to_highest_called_floor(self):
         for floor in self.queues:
             queue = self.queues[floor]
+            print(queue)
             if queue == ():
                 pass
             else:
@@ -75,6 +79,3 @@ class Lift(object):
             self.direction_of_travel = 'down'
         else:
             pass
-
-    def travel(self):
-        self.current_floor = self.destination_floor
