@@ -28,6 +28,9 @@ def test_occupants():
 def test_queues():
     assert lift.queues == {0:(), 1:(), 2: (5,5,5), 3:(), 4:(3,), 5:(), 6:()}
 
+def test_number_of_passengers_queueing():
+    assert lift.number_of_passengers_queueing() == 4
+
 def test_load_passenger():
     lift.load_passenger(5)
     assert lift.occupants[5] == 1
@@ -83,18 +86,3 @@ def test_set_direction_of_travel():
     lift.current_floor = 3
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
-
-
-def test_destination_set_to_highest_called_floor_when_empty_and_going_up():
-    lift.number_of_occupants = 0
-    lift.current_floor = 1
-    lift.direction_of_travel = 'up'
-    lift.smart_travel()
-    assert lift.current_floor == 4
-
-def test_destination_set_to_lowest_called_floor_when_empty_and_going_up():
-    lift.number_of_occupants = 0
-    lift.current_floor = 1
-    lift.direction_of_travel = 'up'
-    lift.smart_travel()
-    assert lift.current_floor == 4

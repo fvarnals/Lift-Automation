@@ -21,6 +21,14 @@ class Lift(object):
             self.queues[floor_number] = queue
             floor_number += 1
 
+    def number_of_passengers_queueing(self):
+        passengers_queueing = 0
+        queues = self.queues
+        for queue in queues:
+            for passenger in queues[queue]:
+                passengers_queueing += 1
+        return passengers_queueing
+
     def load_passenger(self, destination_floor):
         # passenger enters lift
         self.occupants[destination_floor] += 1
