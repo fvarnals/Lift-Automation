@@ -76,6 +76,16 @@ def test_travel_to_highest_called_floor():
     lift.travel_to_highest_called_floor()
     assert lift.current_floor == 4
 
+def test_smart_travel():
+    lift = Lift(queues, capacity)
+    lift.direction_of_travel = 'up'
+    lift.smart_travel()
+    assert lift.current_floor == 4
+
+    lift.direction_of_travel = 'down'
+    lift.smart_travel()
+    assert lift.current_floor == 2
+
 def test_set_direction_of_travel():
     lift.destination_floor = 3
     lift.current_floor = 0

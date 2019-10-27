@@ -89,6 +89,12 @@ class Lift(object):
             else:
                 self.current_floor = floor
 
+    def smart_travel(self):
+        if self.direction_of_travel == 'up':
+            self.travel_to_highest_called_floor()
+        else:
+            self.travel_to_lowest_called_floor()
+
     def set_direction_of_travel(self):
         if self.current_floor < self.destination_floor:
             self.direction_of_travel = 'up'
