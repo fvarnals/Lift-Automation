@@ -27,6 +27,7 @@ class Lift(object):
         self.queues[self.current_floor]
         self.update_number_of_occupants()
 
+
     def unload(self, floor):
         # all occupants destined for given floor, exit lift
         self.occupants[floor] = 0
@@ -59,6 +60,7 @@ class Lift(object):
     def has_spaces_available(self):
         return self.number_of_occupants < self.capacity
 
+
     def set_destination(self, floor):
         self.destination_floor = floor
 
@@ -74,7 +76,6 @@ class Lift(object):
     def travel_to_highest_called_floor(self):
         for floor in self.queues:
             queue = self.queues[floor]
-            print(queue)
             if queue == ():
                 pass
             else:

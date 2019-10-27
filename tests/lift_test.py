@@ -84,12 +84,17 @@ def test_set_direction_of_travel():
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
 
-# def test_load_passengers():
-#     lift.current_floor = 2
-#     lift.occupants = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:7}
-#     lift.direction_of_travel = 'up'
-#     lift.number_of_current_occupants = 7
-#     lift.capacity = 10
-#     lift.queues = {0:(), 1:(), 2: (5,0,1,6,3,5,6), 3:(), 4:(), 5:(), 6:()}
-#     lift.load_passengers()
-#     assert lift.occupants == {3:1, 5:1, 6:8}
+
+def test_destination_set_to_highest_called_floor_when_empty_and_going_up():
+    lift.number_of_occupants = 0
+    lift.current_floor = 1
+    lift.direction_of_travel = 'up'
+    lift.smart_travel()
+    assert lift.current_floor == 4
+
+def test_destination_set_to_lowest_called_floor_when_empty_and_going_up():
+    lift.number_of_occupants = 0
+    lift.current_floor = 1
+    lift.direction_of_travel = 'up'
+    lift.smart_travel()
+    assert lift.current_floor == 4
