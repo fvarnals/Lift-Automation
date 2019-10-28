@@ -10,6 +10,7 @@ class Lift(object):
         self.direction_of_travel = 'up'
         self.destination_floor = None
         self.empty = 'true'
+        self.journey_history = []
 
         # initialize list of people queuing on each floor
         floor_number = 0
@@ -102,3 +103,6 @@ class Lift(object):
             self.direction_of_travel = 'down'
         else:
             pass
+
+    def record_stop(self):
+        self.journey_history.append(self.current_floor)

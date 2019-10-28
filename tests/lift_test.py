@@ -118,3 +118,13 @@ def test_set_direction_of_travel():
     lift.current_floor = 3
     lift.set_direction_of_travel()
     assert lift.direction_of_travel == 'down'
+
+def test_journey_history():
+    lift = Lift(queues, capacity)
+    lift.current_floor = 0
+    lift.record_stop()
+    lift.current_floor = 6
+    lift.record_stop()
+    lift.current_floor = 3
+    lift.record_stop()
+    assert lift.journey_history == [0,6,3]
