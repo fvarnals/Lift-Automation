@@ -3,17 +3,13 @@ class Lift(object):
     def __init__(self, queues, capacity):
         self.capacity = capacity
         self.floors = list(range(0,len(queues)))
-        self.occupants = {}
+        self.occupants = []
         self.number_of_occupants = 0
         self.current_floor = 0
         self.queues = {}
         self.direction_of_travel = 'up'
         self.destination_floor = None
         self.empty = 'true'
-
-        # initialize list of occupants by desired destination floor
-        for floor in self.floors:
-            self.occupants[floor] = 0
 
         # initialize list of people queuing on each floor
         floor_number = 0
@@ -29,20 +25,21 @@ class Lift(object):
                 passengers_queueing += 1
         return passengers_queueing
 
-    def load_passenger(self, destination_floor):
+    def load_passenger(self, passenger):
         # passenger enters lift
-        self.occupants[destination_floor] += 1
-        self.queues[self.current_floor]
+        self.occupants.append(passenger)
         self.update_number_of_occupants()
 
 
-    def unload(self, floor):
+    def unload(self):
         # all occupants destined for given floor, exit lift
-        self.occupants[floor] = 0
+        for passenger in reversed(self.occupants):
+            if passenger == self.current_floor:
+                self.occupants.remove(passenger)
 
     def update_number_of_occupants(self):
         # update the number of people currently in the lift
-        self.number_of_occupants = sum(self.occupants.values())
+        self.number_of_occupants = len(self.occupants)
 
     def go_up(self):
         self.current_floor += 1
