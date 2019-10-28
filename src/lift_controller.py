@@ -1,13 +1,15 @@
-# from lift import Lift
-#
-# class LiftController(object):
-#
-#     def __init__(self, lift):
-#         self.lift = lift
-#
-#     people_in_lift = (lift.number_of_occupants > 0)
-#     people_queuing = (lift.number_of_passengers_queueing > 0)
+from lift import Lift
 
+class LiftController(object):
 
-    # while (people_in_lift) or (people_queing):
-    #     if lift.direction_of_travel = 'up'
+    def __init__(self, lift):
+        n_lift_occupants = lift.number_of_occupants
+        n_people_queueing = lift.number_of_passengers_queueing()
+
+        self.people_in_lift = (n_lift_occupants > 0)
+        self.people_queueing = (n_people_queueing > 0)
+
+    def start(self,lift):
+        lift.record_stop()
+        lift.unload()
+        lift.passengers_pickup()
