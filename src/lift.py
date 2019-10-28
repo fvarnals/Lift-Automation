@@ -49,8 +49,9 @@ class Lift(object):
         next_floor = max(floor for floor in self.occupants if floor < self.current_floor)
         self.current_floor = next_floor
 
-    def passengers_pickup(self, floor_queue):
+    def passengers_pickup(self):
         temp_list = ()
+        floor_queue = self.queues[self.current_floor]
         for passenger in floor_queue:
             if (self.has_spaces_available()) and (self.direction_suitable_for(passenger)):
                 self.load_passenger(passenger)

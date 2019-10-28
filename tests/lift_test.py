@@ -56,10 +56,15 @@ def test_unload():
     lift.unload()
     assert lift.occupants == [1,5,5,4]
 
+def test_empty_unload():
+    lift.occupants = []
+    lift.current_floor = 2
+    lift.unload()
+
 def test_passengers_pickup_going_up():
     lift = Lift(queues, 2)
     lift.current_floor = 2
-    lift.passengers_pickup((5,5,5))
+    lift.passengers_pickup()
     assert lift.number_of_occupants == 2
     assert lift.occupants == [5,5]
     assert lift.queues == {0:(), 1:(), 2: (5,), 3:(), 4:(3,), 5:(), 6:()}
@@ -69,9 +74,17 @@ def test_passengers_pickup_going_down():
     lift.direction_of_travel = 'down'
     lift.current_floor = 4
     floor_queue = lift.queues[4]
-    lift.passengers_pickup(floor_queue)
+    lift.passengers_pickup()
     assert lift.occupants == [3]
     assert lift.queues == {0:(), 1:(), 2: (5,5,5), 3:(), 4:(), 5:(), 6:()}
+
+def test_passengers_pickup_no_queue():
+    lift = Lift(queues, 2)
+    lift.direction_of_travel = 'down'
+    lift.current_floor = 1
+    floor_queue = lift.queues[1]
+    lift.passengers_pickup()
+    assert lift.occupants == []
 
 def test_set_destination():
     lift.set_destination(3)
