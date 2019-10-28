@@ -42,10 +42,12 @@ class Lift(object):
         self.number_of_occupants = len(self.occupants)
 
     def go_up(self):
-        self.current_floor += 1
+        next_floor = min(floor for floor in self.occupants if floor > self.current_floor)
+        self.current_floor = next_floor
 
     def go_down(self):
-        self.current_floor -= 1
+        next_floor = max(floor for floor in self.occupants if floor < self.current_floor)
+        self.current_floor = next_floor
 
     def passengers_pickup(self, floor_queue):
         temp_list = ()

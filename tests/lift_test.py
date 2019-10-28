@@ -40,12 +40,15 @@ def test_update_number_of_occupants():
     assert lift.number_of_occupants == 1
 
 def test_go_up():
+    lift.occupants = [5,6,4]
     lift.go_up()
-    assert lift.current_floor == 1
+    assert lift.current_floor == 4
 
 def test_go_down():
+    lift.occupants = [1,3,2,1]
+    lift.current_floor = 6
     lift.go_down()
-    assert lift.current_floor == 0
+    assert lift.current_floor == 3
 
 def test_unload():
     lift.occupants = [2,1,2,5,2,5,4]
