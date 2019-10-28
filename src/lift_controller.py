@@ -13,3 +13,11 @@ class LiftController(object):
         lift.record_stop()
         lift.unload()
         lift.passengers_pickup()
+
+    def empty_travel(self,lift):
+        lift.smart_travel()
+        lift.record_stop()
+        lift.passengers_pickup()
+        lift.set_destination(lift.occupants[0])
+
+        

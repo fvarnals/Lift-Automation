@@ -16,4 +16,9 @@ def test_people_queueing():
 
 def test_people_in_lift():
     assert lift_controller.people_in_lift == False
-    
+
+def test_empty_travel():
+    lift_controller.empty_travel(lift)
+    assert lift.journey_history == [4]
+    assert lift.occupants == [3]
+    assert lift.destination_floor == 3
