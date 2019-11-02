@@ -20,4 +20,21 @@ class LiftController(object):
         lift.passengers_pickup()
         lift.set_destination(lift.occupants[0])
 
-        
+    def run(self,lift):
+        self.start(lift)
+        while (self.people_in_lift) or (self.people_queueing):
+            if lift.number_of_occupants == 0:
+                self.empty_travel(lift)
+
+    def travel_to_destination_floor(self, lift):
+        while lift.current_floor != lift.destination_floor:
+            if lift.direction_of_travel == 'up':
+                lift.go_up()
+                lift.record_stop()
+                lift.unload()
+                lift.passengers_pickup()
+            else:
+                lift.go_down()
+                lift.record_stop()
+                lift.unload()
+                lift.passengers_pickup()

@@ -67,7 +67,7 @@ class Lift(object):
             return passenger < self.current_floor
 
     def has_spaces_available(self):
-        return self.number_of_occupants < self.capacity
+        return (self.number_of_occupants < self.capacity)
 
 
     def set_destination(self, floor):
@@ -95,6 +95,10 @@ class Lift(object):
             self.travel_to_highest_called_floor()
         else:
             self.travel_to_lowest_called_floor()
+        if self.direction_of_travel == 'up':
+            self.direction_of_travel = 'down'
+        else:
+            self.direction_of_travel = 'up'
 
     def set_direction_of_travel(self):
         if self.current_floor < self.destination_floor:

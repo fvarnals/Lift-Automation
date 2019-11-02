@@ -22,3 +22,11 @@ def test_empty_travel():
     assert lift.journey_history == [4]
     assert lift.occupants == [3]
     assert lift.destination_floor == 3
+
+def test_travel_to_destination_floor():
+    lift.occupants = [1,2,3]
+    lift.direction_of_travel = 'down'
+    lift.current_floor = 4
+    lift.destination_floor = 1
+    lift_controller.travel_to_destination_floor(lift)
+    assert lift.journey_history == [4,3,2,1]
