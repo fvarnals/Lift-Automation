@@ -110,3 +110,6 @@ class Lift(object):
 
     def record_stop(self):
         self.journey_history.append(self.current_floor)
+
+    def return_to_ground_floor(self):
+        self.current_floor = 0

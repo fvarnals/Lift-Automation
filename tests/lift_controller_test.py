@@ -30,3 +30,7 @@ def test_travel_to_destination_floor():
     lift.destination_floor = 1
     lift_controller.travel_to_destination_floor(lift)
     assert lift.journey_history == [4,3,2,1]
+
+def test_return_to_ground_floor():
+    lift.return_to_ground_floor()
+    assert lift.current_floor == 0
