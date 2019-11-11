@@ -28,6 +28,9 @@ class Lift(object):
     def number_of_occupants(self):
         return len(self.occupants)
 
+    def destination(self):
+        return self.destination_floor
+
     def load_passenger(self, passenger):
         # passenger enters lift
         self.occupants.append(passenger)

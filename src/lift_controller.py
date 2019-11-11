@@ -23,7 +23,7 @@ class LiftController(object):
         lift.record_stop()
         lift.unload()
         lift.passengers_pickup()
-        if lift.number_of_occupants > 0:
+        if lift.number_of_occupants() > 0:
             lift.set_destination(lift.occupants[0])
 
     def empty_travel(self,lift):

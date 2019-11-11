@@ -45,3 +45,10 @@ def test_travel_to_destination_floor():
 def test_return_to_ground_floor():
     lift.return_to_ground_floor()
     assert lift.current_floor == 0
+
+def test_start():
+    lift.occupants = [0,5]
+    lift.current_floor = 0
+    lift_controller.start(lift)
+    assert lift.number_of_occupants() == 1
+    assert lift.destination() == 5
