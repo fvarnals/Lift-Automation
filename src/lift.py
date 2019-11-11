@@ -4,7 +4,6 @@ class Lift(object):
         self.capacity = capacity
         self.floors = list(range(0,len(queues)))
         self.occupants = []
-        self.number_of_occupants = 0
         self.current_floor = 0
         self.queues = {}
         self.direction_of_travel = 'up'
@@ -26,10 +25,12 @@ class Lift(object):
                 passengers_queueing += 1
         return passengers_queueing
 
+    def number_of_occupants(self):
+        return len(self.occupants)
+
     def load_passenger(self, passenger):
         # passenger enters lift
         self.occupants.append(passenger)
-        self.update_number_of_occupants()
 
 
     def unload(self):
@@ -37,10 +38,6 @@ class Lift(object):
         for passenger in reversed(self.occupants):
             if passenger == self.current_floor:
                 self.occupants.remove(passenger)
-
-    def update_number_of_occupants(self):
-        # update the number of people currently in the lift
-        self.number_of_occupants = len(self.occupants)
 
     def go_up(self):
         next_floor = min(floor for floor in self.occupants if floor > self.current_floor)
@@ -67,7 +64,9 @@ class Lift(object):
             return passenger < self.current_floor
 
     def has_spaces_available(self):
-        return (self.number_of_occupants < self.capacity)
+        capacity = self.capacity
+        asdf = self.number_of_occupants()
+        return (asdf < capacity)
 
 
     def set_destination(self, floor):

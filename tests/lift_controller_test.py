@@ -22,9 +22,10 @@ def test_people_queueing():
     assert lift_controller.people_queueing(mock_lift) == False
 
 def test_people_in_lift():
-    assert lift_controller.people_in_lift(lift) == False
-    lift.number_of_occupants = 4
-    assert lift_controller.people_in_lift(lift) == True
+    mock_lift.number_of_occupants = MagicMock(return_value = 1)
+    assert lift_controller.people_in_lift(mock_lift) == True
+    mock_lift.number_of_occupants = MagicMock(return_value = 0)
+    assert lift_controller.people_in_lift(mock_lift) == False
 
 def test_empty_travel():
     lift_controller.empty_travel(lift)

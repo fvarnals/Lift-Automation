@@ -35,10 +35,6 @@ def test_load_passenger():
     lift.load_passenger(5)
     assert lift.occupants == [5]
 
-def test_update_number_of_occupants():
-    lift.update_number_of_occupants()
-    assert lift.number_of_occupants == 1
-
 def test_go_up():
     lift.occupants = [5,6,4]
     lift.go_up()
@@ -65,7 +61,7 @@ def test_passengers_pickup_going_up():
     lift = Lift(queues, 2)
     lift.current_floor = 2
     lift.passengers_pickup()
-    assert lift.number_of_occupants == 2
+    assert lift.number_of_occupants() == 2
     assert lift.occupants == [5,5]
     assert lift.queues == {0:(), 1:(), 2: (5,), 3:(), 4:(3,), 5:(), 6:()}
 

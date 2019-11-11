@@ -6,7 +6,8 @@ class LiftController(object):
         lift = lift
 
     def people_in_lift(self,lift):
-        if lift.number_of_occupants > 0:
+        n_occupants = lift.number_of_occupants()
+        if n_occupants > 0:
             return True
         else:
             return False
