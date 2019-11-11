@@ -68,8 +68,8 @@ class Lift(object):
 
     def has_spaces_available(self):
         capacity = self.capacity
-        asdf = self.number_of_occupants()
-        return (asdf < capacity)
+        n_occupants = self.number_of_occupants()
+        return (n_occupants < capacity)
 
 
     def set_destination(self, floor):

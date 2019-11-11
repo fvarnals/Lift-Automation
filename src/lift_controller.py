@@ -36,7 +36,7 @@ class LiftController(object):
     def run(self,lift):
         self.start(lift)
         while (self.people_in_lift) or (self.people_queueing):
-            if lift.number_of_occupants == 0:
+            if lift.number_of_occupants() == 0:
                 self.empty_travel(lift)
             self.travel_to_destination_floor(lift)
         lift.return_to_ground_floor()
