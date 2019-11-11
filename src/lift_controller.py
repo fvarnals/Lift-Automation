@@ -46,14 +46,12 @@ class LiftController(object):
         while lift.current_floor != lift.destination_floor:
             if lift.direction_of_travel == 'up':
                 lift.go_up()
-                lift.record_stop()
-                lift.unload()
-                lift.passengers_pickup()
             else:
                 lift.go_down()
-                lift.record_stop()
-                lift.unload()
-                lift.passengers_pickup()
+
+            lift.record_stop()
+            lift.unload()
+            lift.passengers_pickup()
         if len(lift.occupants) > 0:
             lift.set_destination(lift.occupants[0])
         lift.set_direction_of_travel()

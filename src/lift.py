@@ -41,6 +41,13 @@ class Lift(object):
         for passenger in reversed(self.occupants):
             if passenger == self.current_floor:
                 self.occupants.remove(passenger)
+        n_occupants = self.number_of_occupants()
+        if n_occupants == 0:
+            try:
+                self.set_destination(self.queues[self.current_floor][0])
+                self.set_direction_of_travel()
+            except:
+                pass
 
     def go_up(self):
         next_floor = min(floor for floor in self.occupants if floor > self.current_floor)
@@ -70,7 +77,6 @@ class Lift(object):
         capacity = self.capacity
         n_occupants = self.number_of_occupants()
         return (n_occupants < capacity)
-
 
     def set_destination(self, floor):
         self.destination_floor = floor

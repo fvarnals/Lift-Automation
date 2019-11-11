@@ -124,3 +124,12 @@ def test_journey_history():
     lift.current_floor = 3
     lift.record_stop()
     assert lift.journey_history == [0,6,3]
+
+def test_unload_and_pickup():
+    lift.occupants = [3]
+    lift.current_floor = 3
+    lift.direction_of_travel = 'down'
+    lift.queues[3] = (5,5,5)
+    lift.unload()
+    lift.passengers_pickup()
+    assert lift.occupants == [5,5,5]
