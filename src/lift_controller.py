@@ -3,12 +3,17 @@ from lift import Lift
 class LiftController(object):
 
     def __init__(self, lift):
-        n_people_queueing = lift.number_of_passengers_queueing()
-
-        self.people_queueing = (n_people_queueing > 0)
+        lift = lift
 
     def people_in_lift(self,lift):
         if lift.number_of_occupants > 0:
+            return True
+        else:
+            return False
+
+    def people_queueing(self,lift):
+        n_queueing = lift.number_of_passengers_queueing()
+        if n_queueing > 0:
             return True
         else:
             return False
