@@ -15,7 +15,9 @@ def test_people_queueing():
     assert lift_controller.people_queueing == True
 
 def test_people_in_lift():
-    assert lift_controller.people_in_lift == False
+    assert lift_controller.people_in_lift(lift) == False
+    lift.number_of_occupants = 4
+    assert lift_controller.people_in_lift(lift) == True
 
 def test_empty_travel():
     lift_controller.empty_travel(lift)
