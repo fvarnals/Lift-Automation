@@ -16,3 +16,10 @@ def test_empty_travel():
     assert lift.journey_history == [4]
     assert lift.occupants == [3]
     assert lift.direction_of_travel == 'down'
+    assert lift.destination_floor == 3
+
+def test_run():
+    lift = Lift(queues,capacity)
+    lift_controller = LiftController(lift)
+    lift_controller.run(lift)
+    assert lift.journey_history == [0,4,3,2,5,0]
