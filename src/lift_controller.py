@@ -29,9 +29,9 @@ class LiftController(object):
     def empty_travel(self,lift):
         lift.smart_travel()
         lift.record_stop()
-        lift.passengers_pickup()
-        lift.set_destination(lift.occupants[0])
+        lift.set_destination(lift.queues[lift.current_floor][0])
         lift.set_direction_of_travel()
+        lift.passengers_pickup()
 
     def run(self,lift):
         self.start(lift)
@@ -39,8 +39,12 @@ class LiftController(object):
             if lift.number_of_occupants() == 0:
                 self.empty_travel(lift)
             self.travel_to_destination_floor(lift)
-        lift.return_to_ground_floor()
-        lift.record_stop()
+
+        # once all journeys are complete, return to ground floor
+        # if not there already
+        if lift.current_floor != 0:
+            lift.return_to_ground_floor()
+            lift.record_stop()
 
     def travel_to_destination_floor(self, lift):
         while lift.current_floor != lift.destination_floor:

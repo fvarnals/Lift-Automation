@@ -23,3 +23,11 @@ def test_run():
     lift_controller = LiftController(lift)
     lift_controller.run(lift)
     assert lift.journey_history == [0,4,3,2,5,0]
+
+queues2 = ( (),   (0,),  (),      (),   (2,),  (3,),  () )
+lift2 = Lift(queues2,capacity)
+lift_controller2 = LiftController(lift2)
+
+def test_run_2():
+    lift_controller2.run(lift2)
+    assert lift2.journey_history == [0, 5, 4, 3, 2, 1, 0]

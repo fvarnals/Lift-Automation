@@ -120,10 +120,10 @@ class Lift(object):
             self.travel_to_highest_called_floor()
         else:
             self.travel_to_lowest_called_floor()
-        if self.direction_of_travel == 'up':
-            self.direction_of_travel = 'down'
-        else:
-            self.direction_of_travel = 'up'
+        # if self.direction_of_travel == 'up':
+        #     self.direction_of_travel = 'down'
+        # else:
+        #     self.direction_of_travel = 'up'
 
     def set_direction_of_travel(self):
         if self.current_floor < self.destination_floor:
