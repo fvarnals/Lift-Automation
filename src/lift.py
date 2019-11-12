@@ -49,13 +49,30 @@ class Lift(object):
             except:
                 pass
 
+
     def go_up(self):
-        next_floor = min(floor for floor in self.occupants if floor > self.current_floor)
-        self.current_floor = next_floor
+        passenger_destinations = self.occupants
+        while True:
+            next_floor = min(floor for floor in self.queues if floor > self.current_floor)
+            # if next_floor.queue
+            people_queueing_to_go_up = len(list(destination for destination in self.queues[next_floor] if destination > self.current_floor))
+            if( next_floor in passenger_destinations or
+            people_queueing_to_go_up):
+                self.current_floor = next_floor
+                break
+            self.current_floor = next_floor
 
     def go_down(self):
-        next_floor = max(floor for floor in self.occupants if floor < self.current_floor)
-        self.current_floor = next_floor
+        passenger_destinations = self.occupants
+        while True:
+            next_floor = max(floor for floor in self.queues if floor < self.current_floor)
+            # if next_floor.queue
+            people_queueing_to_go_up = len(list(destination for destination in self.queues[next_floor] if destination < self.current_floor))
+            if( next_floor in passenger_destinations or
+            people_queueing_to_go_up):
+                self.current_floor = next_floor
+                break
+            self.current_floor = next_floor
 
     def passengers_pickup(self):
         temp_list = ()
